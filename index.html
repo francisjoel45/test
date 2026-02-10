@@ -2,34 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Be My Valentine 💖</title>
+  <title>Mary, Be My Valentine 💖</title>
+
   <style>
     body {
       font-family: 'Arial', sans-serif;
       background: linear-gradient(135deg, #ff758c, #ff7eb3);
       height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0;
     }
 
+    /* FLOWER ANIMATION */
+    .flower {
+      position: absolute;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
     .card {
       background: white;
       padding: 40px;
-      border-radius: 20px;
+      border-radius: 25px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      width: 320px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      width: 350px;
       position: relative;
+      z-index: 10;
     }
 
     h1 {
       color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    .from {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
     }
 
     button {
-      padding: 12px 25px;
+      padding: 14px 28px;
       font-size: 18px;
       border: none;
       border-radius: 30px;
@@ -40,19 +72,41 @@
     #yesBtn {
       background: #ff4d6d;
       color: white;
+      box-shadow: 0 5px 15px rgba(255,77,109,0.4);
     }
 
     #noBtn {
-      background: #ccc;
+      background: #ddd;
       position: absolute;
     }
   </style>
 </head>
+
 <body>
 
+  <!-- FLOWERS -->
+  <script>
+    const flowers = ["🌸","🌺","🌹","🌷","💐"];
+    for (let i = 0; i < 25; i++) {
+      const flower = document.createElement("div");
+      flower.className = "flower";
+      flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+      flower.style.left = Math.random() * 100 + "vw";
+      flower.style.animationDuration = (5 + Math.random() * 5) + "s";
+      flower.style.fontSize = (18 + Math.random() * 20) + "px";
+      document.body.appendChild(flower);
+    }
+  </script>
+
+  <!-- CARD -->
   <div class="card">
-    <h1>Mary Will you be my Valentine? 💘</h1>
-    <p>You already know the right answer 😌</p>
+    <h1>Mary 💖</h1>
+    <p class="from">From your favorite person, Cays 😌</p>
+
+    <p>
+      Will you make me the happiest guy  
+      and be my Valentine? 💘
+    </p>
 
     <button id="yesBtn" onclick="goYes()">YES 💖</button>
     <button id="noBtn">NO 😅</button>
@@ -62,8 +116,8 @@
     const noBtn = document.getElementById("noBtn");
 
     noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 200 - 100;
+      const x = Math.random() * 220 - 110;
+      const y = Math.random() * 220 - 110;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     });
 
@@ -74,6 +128,3 @@
 
 </body>
 </html>
-
-
-
